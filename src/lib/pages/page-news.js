@@ -1,0 +1,1 @@
+//page only showing recent news from wordpress

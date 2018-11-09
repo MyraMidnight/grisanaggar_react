@@ -1,0 +1,1 @@
+//form for editing wordpress news content
