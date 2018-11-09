@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+//React HTML Parser to parse html from strings
+import ReactHtmlParser from 'react-html-parser';
+ 
 
 class App extends Component {
+  constructor(props){
+      super(props);
+      this.state = {
+        posts:[],
+      }
+  }
+  componentDidMount(){
+    let projectsURL = "http://localhost/prototype-wp-wiki/wordpress/wp-json/wp/v2/pages";
+    fetch(projectsURL).then(res=>res.json()).then((json)=>{
+        console.log(json)
+        this.setState({
+          posts: json
+        })
+    })
+  }
+  
   render() {
+    //render each post
+    let posts = this.state.posts.map((post, i)=>{
+      return (
+        <div key={i}>
+          <h3>{ReactHtmlParser(post.title.rendered)}</h3>
+          <div className="post-content">{ReactHtmlParser(post.content.rendered)}</div>
+        </div>
+      )
+    })
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {posts}
       </div>
     );
   }
