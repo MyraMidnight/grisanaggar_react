@@ -42,16 +42,15 @@ dashboard for logged in user
 */
 
 import React from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
+import MenuPages from '../components/menu-pages';
+
 
 class MainPage extends React.Component {
     render() {
         return (
             <div>
-                <Header />
                 <h2> Main Page </h2>
-                <Footer />
+                <MenuPages/>
             </div>
         )
     }

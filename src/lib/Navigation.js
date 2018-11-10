@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 //pages
+import Header from './components/header';
+import Footer from './components/footer';
 import MainPage from './pages/page-main';
 import News from './pages/page-news';
 import Wiki from './pages/page-wiki';
 import SinglePage from './pages/page-single';
 import EditPage from './pages/page-edit';
 import CreatePage from './pages/page-create';
+import * as actions from '../actions';
 
 class Navigation extends React.Component {
     /* Switches the active page */
@@ -23,7 +26,7 @@ class Navigation extends React.Component {
             return <CreatePage />;
             //main page
             case "page-main":     
-            return <MainPage />;
+            return <MainPage/>;
             //wiki main page
             case "page-wiki":     
             return <Wiki />;
@@ -38,7 +41,9 @@ class Navigation extends React.Component {
     render() {
         return (
             <div>
+                <Header />
                 {this.pageSwitch(this.props.currentPage)}
+                <Footer />
             </div>
         )
     }
@@ -46,6 +51,11 @@ class Navigation extends React.Component {
 
 const mapStateToProps = state => ({
     currentPage: state.currentPage,
+    pages: state.pages,
 })
   
-export default connect(mapStateToProps)(Navigation);
+const mapDispatchToProps = (dispatch)=>({
+    updateWikiNav: (wiki) => {dispatch(actions.updateWikiNav(wiki))},
+    getPages: (pages) => {dispatch(actions.getPages(pages))}
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

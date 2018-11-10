@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import React from 'react';
 import * as actions from '../../actions';
+import MenuDesk from './menu-desktop';
 
 class Header extends React.Component {
     handleButtonClick = (page)=>{
@@ -13,11 +14,7 @@ class Header extends React.Component {
         return (
             <div>
                 <h2> Header</h2>
-                <nav>
-                    <button type="button" onClick={()=> this.handleButtonClick("page-wiki")}> Wiki </button>
-                    <button type="button" onClick={()=> this.handleButtonClick("page-news")}> news </button>
-                    <button type="button" onClick={()=> this.handleButtonClick("page-main")}> Main </button>
-                </nav>
+                <MenuDesk />
             </div>
         )
     }
