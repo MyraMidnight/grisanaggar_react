@@ -12,8 +12,8 @@ const defaultState = {
 const reducer = (state=defaultState, action)=>{
   console.log("redux actionType: ", action.type)
 	switch (action.type) {
-		//case 'USER_LOGGED_IN':
-		//	return {...state, currentUser: action.payload}
+		case 'CHANGE_CURRENT_PAGE':
+			return {...state, currentPage: action.payload}
 		default:
 			return state;
 	}
