@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 //pages
 import Header from './components/header';
 import Footer from './components/footer';
+import Sidebar from './components/menu-sidebar';
 import MainPage from './pages/page-main';
-import News from './pages/page-news';
 import Wiki from './pages/page-wiki';
 import SinglePage from './pages/page-single';
 import EditPage from './pages/page-edit';
@@ -32,16 +32,15 @@ class Navigation extends React.Component {
             return <Wiki />;
             //single article/page
             case "page-single":   
-            return <SinglePage />;
+            return <SinglePage data={page.data}/>;
             //wordpress/news main page
-            case "page-news":     
-            return <News />;
         }
     }
     render() {
         return (
             <div>
                 <Header />
+                <Sidebar />
                 {this.pageSwitch(this.props.currentPage)}
                 <Footer />
             </div>
@@ -55,7 +54,7 @@ const mapStateToProps = state => ({
 })
   
 const mapDispatchToProps = (dispatch)=>({
-    updateWikiNav: (wiki) => {dispatch(actions.updateWikiNav(wiki))},
+    getWikiPages: (pages) => {dispatch(actions.getWikiPages(pages))},
     getPages: (pages) => {dispatch(actions.getPages(pages))}
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

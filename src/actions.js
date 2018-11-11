@@ -3,7 +3,7 @@ const actionTypes = {
     CHANGE_CURRENT_PAGE: 'CHANGE_CURRENT_PAGE',
     UPDATE_CURRENT_USER: 'UPDATE_CURRENT_USER',
     UPDATE_NEWS: 'UPDATE_NEWS',
-    UPDATE_WIKI_NAV: 'UPDATE_WIKI_NAV',
+    GET_WIKI_PAGES: 'GET_WIKI_PAGES',
     GET_PAGES: 'GET_PAGES',
 
 }
@@ -20,8 +20,8 @@ export const updateNews = (news)=>{
     return {type: actionTypes.UPDATE_NEWS, payload:news}
 }
 //UPDATE_WIKI_NAV
-export const updateWikiNav = (wiki)=>{
-    return {type: actionTypes.UPDATE_WIKI_NAV, payload:wiki}
+export const getWikiPages = (wiki)=>{
+    return {type: actionTypes.GET_WIKI_PAGES, payload:wiki}
 }
 //GET_PAGES
 export const getPages = (pages)=>{

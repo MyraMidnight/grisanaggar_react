@@ -1,14 +1,14 @@
 //page only showing featured mediawiki articles/navigation for wiki
 
 import React from 'react';
-import WikiNav from '../components/item-wiki-nav';
+//import MenuWiki from '../components/menu-wiki';
 
 class Wiki extends React.Component {
     render() {
         return (
-            <div>
-                <WikiNav />
-            </div>
+            <main>
+                <h2>Wiki main</h2>
+            </main>
         )
     }
 }

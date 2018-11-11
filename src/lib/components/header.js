@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 
 import React from 'react';
 import * as actions from '../../actions';
-import MenuDesk from './menu-desktop';
 
 class Header extends React.Component {
     handleButtonClick = (page)=>{
         this.props.changeCurrentPage({page: page});
+        return false
     }
     render() {
         return (
-            <div>
-                <h2> Header</h2>
-                <MenuDesk />
-            </div>
+            <header>
+                <button className="link" onClick={()=>{this.handleButtonClick("page-main")}}><h2>Header</h2></button>
+                
+            </header>
         )
     }
 }

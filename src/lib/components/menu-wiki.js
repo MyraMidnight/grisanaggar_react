@@ -4,12 +4,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-class WikiNav extends React.Component {
+class MenuWiki extends React.Component {
     render() {
         return (
-            <nav>
-                <h2> Wiki navigation </h2>
-            </nav>
+            <ul>
+                <h4>Wiki</h4>
+            </ul>
         )
     }
 }
@@ -18,4 +18,4 @@ const mapStateToProps = (state)=>{
     return state
 }
 
-export default connect(mapStateToProps)(WikiNav);
+export default connect(mapStateToProps)(MenuWiki);

@@ -20,5 +20,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#wordpress
-#mediawiki
+#SCSS
+.sass-cache/
+*css.map

@@ -34,18 +34,33 @@ class App extends Component {
     })
   }
   /* Fetch Wiki Articles */
-  /* Fetch Wordpress Posts/News */
+  //http://localhost/prototype-wp-wiki/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:Pages&format=json
+  //http://localhost/prototype-wp-wiki/wiki/api.php?action=parse&format=json&page=Main_Page
+  fetchWikiPages = ()=>{
+    const wikiUrl = "http://localhost/prototype-wp-wiki/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:Pages&format=json";
+    const fetchHeader = {
+      mode:'no-cors',
+      credentials: 'include',
+      headers: {
+        "Access-Control-Allow-Credentials": false,
+        origin: "http://localhost:3000",
+      }
+    };
+    fetch(wikiUrl, fetchHeader).then((results)=>{
+      console.log("WikiPages: ", results)
+      
+    })
+  }
   
   componentDidMount(){
     this.fetchPages(); //fetches WP pages
+    this.fetchWikiPages();
   }
   render() {
     return (
-      <div id="app-wrapper">
         <Provider store={store}>
           <Navigation />
         </Provider>
-      </div>
     );
   }
 }
