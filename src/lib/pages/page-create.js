@@ -3,9 +3,9 @@ import React from 'react';
 class CreatePage extends React.Component {
     render() {
         return (
-            <main>
+            <section className="content">
                 <h2> Create page </h2>
-            </main>
+            </section>
         )
     }
 }

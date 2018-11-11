@@ -6,9 +6,9 @@ import React from 'react';
 class Wiki extends React.Component {
     render() {
         return (
-            <main>
+            <section className="content">
                 <h2>Wiki main</h2>
-            </main>
+            </section>
         )
     }
 }

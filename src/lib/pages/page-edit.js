@@ -4,9 +4,9 @@ import React from 'react';
 class EditPage extends React.Component {
     render() {
         return (
-            <main>
+            <section className="content">
                 <h2> Edit page </h2>
-            </main>
+            </section>
         )
     }
 }

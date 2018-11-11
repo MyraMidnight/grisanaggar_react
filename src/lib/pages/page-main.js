@@ -43,13 +43,12 @@ dashboard for logged in user
 
 import React from 'react';
 
-
 class MainPage extends React.Component {
     render() {
         return (
-            <main id={this.props.className}>
+            <article className="content">                
                 <h2> Main Page </h2>
-            </main>
+            </article>
         )
     }
 }

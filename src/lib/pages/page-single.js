@@ -7,7 +7,7 @@ import ReactHtmlParser  from 'react-html-parser';
 class SinglePage extends React.Component {
     render() {
         return (
-            <article>
+            <article className="content">
                 <h2>Single page: {this.props.data.title}</h2>
                 {console.log("props data: ", this.props.data)}
                 { ReactHtmlParser(this.props.data.content)}

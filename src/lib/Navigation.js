@@ -17,22 +17,22 @@ class Navigation extends React.Component {
         switch(page.page){
             // default
             default:              
-            return<MainPage className="content-wrapper"/>;
+            return<MainPage/>;
             //edit page
             case "page-edit":    
-            return<EditPage  className="content-wrapper"/>;
+            return<EditPage />;
             //create page
             case "page-create":   
-            return <CreatePage  className="content-wrapper"/>;
+            return <CreatePage />;
             //main page
             case "page-main":     
-            return <MainPage className="content-wrapper"/>;
+            return <MainPage/>;
             //wiki main page
             case "page-wiki":     
-            return <Wiki  className="content-wrapper"/>;
+            return <Wiki />;
             //single article/page
             case "page-single":   
-            return <SinglePage data={page.data}  className="content-wrapper"/>;
+            return <SinglePage data={page.data} />;
             //wordpress/news main page
         }
     }
@@ -40,8 +40,10 @@ class Navigation extends React.Component {
         return (
             <div id="wrapper">
                 <Header />
+                <main id="content-wrapper">
+                    {this.pageSwitch(this.props.currentPage)}
+                </main>
                 <Sidebar />
-                {this.pageSwitch(this.props.currentPage)}
                 <Footer />
             </div>
         )
