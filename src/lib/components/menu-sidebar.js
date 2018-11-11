@@ -8,7 +8,7 @@ import MenuWiki from './menu-wiki';
 class Sidebar extends React.Component {
     render() {
         return (
-            <nav>
+            <nav id="sidebar">
                 <MenuPages />
                 <MenuWiki />
             </nav>

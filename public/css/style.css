@@ -6,6 +6,24 @@ button.link {
 button.link:hover {
   cursor: pointer; }
 
+#wrapper header {
+  grid-area: header; }
+
+#wrapper footer {
+  grid-area: footer; }
+
+#sidebar {
+  grid-area: sidebar; }
+
+@supports (display: grid) {
+  @media (min-width: 576px) {
+    #wrapper {
+      display: grid;
+      max-width: 960px;
+      margin: auto;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto auto;
+      grid-template-areas: "header header" "sidebar content" "footer footer"; } } }
 /*
 @import url("files/lightbox/css/lightbox.css");
 @import url("files/css/sidemenu.css");

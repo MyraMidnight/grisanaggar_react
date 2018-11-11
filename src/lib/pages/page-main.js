@@ -47,7 +47,7 @@ import React from 'react';
 class MainPage extends React.Component {
     render() {
         return (
-            <main>
+            <main id={this.props.className}>
                 <h2> Main Page </h2>
             </main>
         )

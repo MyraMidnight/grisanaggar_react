@@ -5,7 +5,11 @@ button.link {
 }
 button.link:hover {
     cursor:pointer;
-}   
+}  
+@import '_partials/variables';
+@import '_partials/mixins';
+@import '_partials/grid'; 
+@import '_partials/sidebar';
 /*
 @import url("files/lightbox/css/lightbox.css");
 @import url("files/css/sidemenu.css");

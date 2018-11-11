@@ -1,0 +1,15 @@
+//media breakpoints
+@mixin breakpoint($break) {
+	$small: map-get($breakpoints, 'small'); //if less, then it'll be "max-width"
+	$value: map-get($breakpoints, $break); //get the breakpoint value
+	
+	@if ($value < $small) {
+		@media (max-width: $value) {
+			@content;			
+		}		
+	} @else {
+        @media (min-width: $value) {
+            @content;			
+        }	
+	}
+}
