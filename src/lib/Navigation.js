@@ -40,10 +40,10 @@ class Navigation extends React.Component {
         return (
             <div id="wrapper">
                 <Header />
-                <main id="content-wrapper">
+                <Sidebar />
+                <main id="content-wrapper" className="container">
                     {this.pageSwitch(this.props.currentPage)}
                 </main>
-                <Sidebar />
                 <Footer />
             </div>
         )

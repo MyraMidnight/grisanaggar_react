@@ -19,6 +19,7 @@ class App extends Component {
     fetch(projectsURL).then(res=>res.json()).then((json)=>{
       let newPagesList = [];
       json.forEach((page)=>{
+        console.log("Page: ", page);
         //create new object per page
         const newPage = [];
         newPage["title"] = page.title.rendered;
@@ -26,6 +27,9 @@ class App extends Component {
         newPage["slug"] = page.slug;
         newPage["description"] = page.excerpt.rendered.replace(/<[^>]+>/g, '');
         newPage["id"] = page.id;
+        newPage["parent"] = page.parent;
+        newPage["order"] = page.menu_order;
+
         newPagesList.push(newPage)
       })
       return newPagesList;
@@ -43,7 +47,8 @@ class App extends Component {
       credentials: 'include',
       headers: {
         "Access-Control-Allow-Credentials": false,
-        origin: "http://localhost:3000",
+        'Access-Control-Allow-Origin': "192.168.2.117:3000",
+        origin: "192.168.2.117:3000",
       }
     };
     fetch(wikiUrl, fetchHeader).then((results)=>{

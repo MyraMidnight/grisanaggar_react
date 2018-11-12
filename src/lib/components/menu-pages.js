@@ -13,9 +13,13 @@ class MenuPages extends React.Component {
             data: page,
         });
     }
+    navigation = ()=>{
+        
+    }
     render() {
         return (
-            <ul>
+            <ul className="nav-pages nav-list">
+                
                 <h4>Pages</h4>
                 {this.props.pages.map((page, i)=>{
                     return (

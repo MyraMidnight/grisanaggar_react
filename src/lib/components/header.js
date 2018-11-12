@@ -12,7 +12,7 @@ class Header extends React.Component {
     }
     render() {
         return (
-            <header>
+            <header className="container">
                 <button className="link" onClick={()=>{this.handleButtonClick("page-main")}}><h2>Header</h2></button>
                 
             </header>

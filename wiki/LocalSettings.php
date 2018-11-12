@@ -143,4 +143,4 @@ wfLoadExtension( 'WikiEditor' );
 # End of automatically generated settings.
 # Add more configuration options below.
 
-$wgCrossSiteAJAXdomains = array( 'http://localhost:3000' );
+$wgCrossSiteAJAXdomains = array( '*' );
