@@ -12,19 +12,16 @@
   grid-area: content;
 }
 @supports (display:grid){
-  #wrapper{  
-      display:grid;
-      max-width:960px;
-      margin:auto;  
-      grid-template-columns: 200px auto;
-      grid-template-rows: 1fr auto 1fr;
-      grid-template-areas: 
-        "header sidebar"
-        "content content"
-        "footer footer";
-  }
-  @include breakpoint(small){      
+  @include breakpoint(small){   
+    #root{ 
+      //padding:32px;
+    }   
     #wrapper {
+      margin:auto; 
+      display:grid;
+      max-width:960px; 
+      grid-template-columns: 200px auto;
+      grid-template-rows: 100px auto 100px;
       grid-template-areas: 
         "header header"
         "sidebar content"
