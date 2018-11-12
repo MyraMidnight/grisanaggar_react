@@ -11,9 +11,11 @@ const store = createStore(reducer);
 window.store = store;
 
 class App extends Component {
-  /* 
-  Fetch Wordpress Pages 
-  */
+  
+
+    /*
+    =========================== FETCH wordpress pages 
+    */
   fetchPages = ()=>{
     const projectsURL = "http://localhost/prototype-wp-wiki/wordpress/wp-json/wp/v2/pages";
     fetch(projectsURL).then(res=>res.json()).then((json)=>{
@@ -37,7 +39,10 @@ class App extends Component {
       store.dispatch(actions.getPages(pages));
     })
   }
-  /* Fetch Wiki Articles */
+  
+    /*
+    =========================== FETC wiki page 
+    */
   //http://localhost/prototype-wp-wiki/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:Pages&format=json
   //http://localhost/prototype-wp-wiki/wiki/api.php?action=parse&format=json&page=Main_Page
   fetchWikiPages = ()=>{
@@ -57,11 +62,17 @@ class App extends Component {
     })
   }
   
+    /*
+    =========================== COMPONENT DID MOUNT 
+    */
   componentDidMount(){
     this.fetchPages(); //fetches WP pages
     this.fetchWikiPages();
   }
   render() {
+    /*
+    =========================== RENDER 
+    */
     return (
         <Provider store={store}>
           <Navigation />

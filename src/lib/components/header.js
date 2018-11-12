@@ -14,6 +14,7 @@ class Header extends React.Component {
         return (
             <header className="container">
                 <button className="link" onClick={()=>{this.handleButtonClick("page-main")}}><h2>Header</h2></button>
+                <button className="link" onClick={()=>{this.handleButtonClick("page-dashboard")}}>Dashboard</button>
                 
             </header>
         )

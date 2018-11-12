@@ -11,7 +11,8 @@ button.link {
   border: none; }
 
 button.link:hover {
-  cursor: pointer; }
+  cursor: pointer;
+  color: blue; }
 
 #root {
   min-height: 100vh; }

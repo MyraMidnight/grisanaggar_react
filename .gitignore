@@ -23,3 +23,5 @@ yarn-error.log*
 #SCSS
 .sass-cache/
 *css.map
+/wiki
+/wordpress

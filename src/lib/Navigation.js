@@ -6,6 +6,7 @@ import Footer from './components/footer';
 import Sidebar from './components/menu-sidebar';
 import MainPage from './pages/page-main';
 import Wiki from './pages/page-wiki';
+import Dashboard from './pages/page-dashboard';
 import SinglePage from './pages/page-single';
 import EditPage from './pages/page-edit';
 import CreatePage from './pages/page-create';
@@ -30,6 +31,9 @@ class Navigation extends React.Component {
             //wiki main page
             case "page-wiki":     
             return <Wiki />;
+            //user dashboard
+            case "page-dashboard":     
+            return <Dashboard />;
             //single article/page
             case "page-single":   
             return <SinglePage data={page.data} />;
@@ -37,6 +41,8 @@ class Navigation extends React.Component {
         }
     }
     render() {
+        //Sidebar should change when user selects 'dashboard'
+        //to navigate the "backend"
         return (
             <div id="wrapper">
                 <Header />
