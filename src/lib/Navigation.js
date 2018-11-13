@@ -1,17 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../actions';
 //pages
-import Header from './components/header';
-import Footer from './components/footer';
-import Sidebar from './components/menu-sidebar';
 import MainPage from './pages/page-main';
 import Wiki from './pages/page-wiki';
 import Dashboard from './pages/page-dashboard';
-import SinglePage from './pages/page-single';
 import EditPage from './pages/page-edit';
 import CreatePage from './pages/page-create';
-import * as actions from '../actions';
-
+/*<Switch>
+    <Route path="/" component={MainPage} />
+    <Route path="/dashboard" component={Dashboard} />
+    <Route path="/page" component={SinglePage} />
+    <Route path="/wiki" component={Wiki} />
+    <Route path="/edit" component={EditPage} />
+    <Route path="/create" component={CreatePage} />
+    {
+        // when none of the above match, <NoMatch> will be rendered 
+    }
+    <Route component={MainPage} />
+</Switch>*/
 class Navigation extends React.Component {
     /* Switches the active page */
     pageSwitch(page) {
@@ -27,7 +34,7 @@ class Navigation extends React.Component {
             return <CreatePage />;
             //main page
             case "page-main":     
-            return <MainPage/>;
+            return <Wiki />;
             //wiki main page
             case "page-wiki":     
             return <Wiki />;
@@ -36,7 +43,7 @@ class Navigation extends React.Component {
             return <Dashboard />;
             //single article/page
             case "page-single":   
-            return <SinglePage data={page.data} />;
+            return <Wiki />;
             //wordpress/news main page
         }
     }
@@ -44,13 +51,8 @@ class Navigation extends React.Component {
         //Sidebar should change when user selects 'dashboard'
         //to navigate the "backend"
         return (
-            <div id="wrapper">
-                <Header />
-                <Sidebar />
-                <main id="content-wrapper" className="container">
+            <div>
                     {this.pageSwitch(this.props.currentPage)}
-                </main>
-                <Footer />
             </div>
         )
     }

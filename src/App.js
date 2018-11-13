@@ -10,6 +10,8 @@ import * as actions from './actions';
 const store = createStore(reducer);
 window.store = store;
 
+//Routs
+
 class App extends Component {
   
 
@@ -74,7 +76,7 @@ class App extends Component {
     /*
     =========================== RENDER 
     */
-    return (
+    return (        
         <Provider store={store}>
           <Navigation />
         </Provider>
