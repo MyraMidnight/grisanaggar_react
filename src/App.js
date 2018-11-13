@@ -19,9 +19,10 @@ class App extends Component {
   fetchPages = ()=>{
     const projectsURL = "http://localhost/prototype-wp-wiki/wordpress/wp-json/wp/v2/pages";
     fetch(projectsURL).then(res=>res.json()).then((json)=>{
+      //console.log("list length: ", json.length)
       let newPagesList = [];
       json.forEach((page)=>{
-        console.log("Page: ", page);
+        //console.log("Page: ", page);
         //create new object per page
         const newPage = [];
         newPage["title"] = page.title.rendered;
