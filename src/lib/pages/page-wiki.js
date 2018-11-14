@@ -3,12 +3,12 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import ReactHtmlParser  from 'react-html-parser';
+import * as actions from '../../actions';
+//import ReactHtmlParser  from 'react-html-parser';
+
 import Header from '../components/header';
 import Footer from '../components/footer';
-
-import MenuList from '../components/menu-list';
-import * as actions from '../../actions';
+//import MenuList from '../components/menu-list';
 
 class Wiki extends React.Component {
     changePage = (page)=>{
@@ -20,18 +20,14 @@ class Wiki extends React.Component {
         //Sidebar should change when user selects 'dashboard'
         //to navigate the "backend"
         return (
-            <div id="wrapper" class="page-sidebar">
+            <div id="wrapper" className="page-sidebar">
                 <Header />
                 <nav id="sidebar" className="container">
-                    <ul>
-                        <h4>Pages</h4>
-                        <MenuList list={this.props.pages} action={this.changePage} />
-                    </ul>
+
                 </nav>
                 <main id="content-wrapper" className="container">
                     <article className="content">
-                        <h2>{this.props.currentPage.data.title}</h2>
-                        { ReactHtmlParser(this.props.currentPage.data.content)}
+                        <h2>Wiki page</h2>
                     </article>
                 </main>
                 <Footer />

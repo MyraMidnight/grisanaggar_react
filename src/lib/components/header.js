@@ -1,6 +1,7 @@
 //the header
 
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import * as actions from '../../actions';
 
@@ -12,13 +13,12 @@ class Header extends React.Component {
     }
     render() {
         return (
-            <header className="container">
+            <header id="header" className="container">
                 <ul>
-                    <li><a href="/" >Home</a></li>
-                    <li><a href="/wiki">Wiki</a></li>
-                    <li><a href="/dashboard">Dashboard</a></li>
-                </ul>    
-                         
+                    <li><Link to="/" >Home</Link></li>
+                    <li><Link to="/wiki">Wiki</Link></li>
+                    <li><Link to="/dashboard">Dashboard</Link></li>
+                </ul>           
             </header>
         )
     }

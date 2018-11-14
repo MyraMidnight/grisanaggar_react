@@ -1,9 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Route, Switch } from 'react-router-dom';
 //pages
-//import Welcome from './pages/page-main';
+import Welcome from './pages/page-main';
 import Wiki from './pages/page-wiki';
 import Dashboard from './pages/page-dashboard';
 import EditPage from './pages/page-edit';
@@ -14,7 +15,7 @@ class Navigation extends React.Component {
         return (
             <Switch>
                 <Route //The welcome screen
-                    exact path="/" component={Wiki} />
+                    exact path="/" component={Welcome} />
                 <Route //Wiki pages (currently WP pages)
                     path="/wiki" component={Wiki} />
                 <Route //The user dashboard, log in
@@ -39,4 +40,4 @@ const mapDispatchToProps = (dispatch)=>({
     getWikiPages: (pages) => {dispatch(actions.getWikiPages(pages))},
     getPages: (pages) => {dispatch(actions.getPages(pages))}
 })
-export default withRouter(mapStateToProps, mapDispatchToProps)(Navigation);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navigation));

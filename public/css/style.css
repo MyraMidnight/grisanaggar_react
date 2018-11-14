@@ -88,5 +88,7 @@ button.link:hover {
   #wrapper #content-wrapper.container {
     margin-left: 0;
     border-radius: 0 5px 5px 0; } }
+#header {
+  display: flex; }
 
 /*# sourceMappingURL=style.css.map */

@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
                 <main id="content-wrapper" className="container">
                     <article className="content">
                         <h2>Dashboard</h2>
-                        <p>Post: {this.props.location.query.postTitle}</p>
+                        <p>Post:</p>
                         <p>Please login to access the dashboard options</p>
                     </article>
                 </main>
