@@ -1,1 +1,0 @@
-//navigation for mobile devices

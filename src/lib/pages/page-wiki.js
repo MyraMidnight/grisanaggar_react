@@ -20,7 +20,7 @@ class Wiki extends React.Component {
         //Sidebar should change when user selects 'dashboard'
         //to navigate the "backend"
         return (
-            <div id="wrapper">
+            <div id="wrapper" class="page-sidebar">
                 <Header />
                 <nav id="sidebar" className="container">
                     <ul>

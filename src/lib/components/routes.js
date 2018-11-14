@@ -1,18 +1,17 @@
+//dashboard for current user
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import * as actions from '../actions';
-import { Route, Switch } from 'react-router-dom';
-//pages
-//import Welcome from './pages/page-main';
-import Wiki from './pages/page-wiki';
-import Dashboard from './pages/page-dashboard';
-import EditPage from './pages/page-edit';
-import CreatePage from './pages/page-create';
+import { Route } from 'react-router-dom';
 
-class Navigation extends React.Component {
+//import Welcome from './pages/page-main';
+import Wiki from '../pages/page-wiki';
+import Dashboard from '../pages/page-dashboard';
+import EditPage from '../pages/page-edit';
+import CreatePage from '../pages/page-create';
+
+class Routes extends React.Component {
     render() {
         return (
-            <Switch>
+                <div>
                 <Route //The welcome screen
                     exact path="/" component={Wiki} />
                 <Route //Wiki pages (currently WP pages)
@@ -25,18 +24,9 @@ class Navigation extends React.Component {
                     path="/create" component={CreatePage} />
                 <Route // when none of the above match, <NoMatch> will be rendered 
                     component={Wiki} />
-            </Switch>
+            </div>
         )
     }
 }
 
-const mapStateToProps = state => ({
-    currentPage: state.currentPage,
-    pages: state.pages,
-})
-  
-const mapDispatchToProps = (dispatch)=>({
-    getWikiPages: (pages) => {dispatch(actions.getWikiPages(pages))},
-    getPages: (pages) => {dispatch(actions.getPages(pages))}
-})
-export default withRouter(mapStateToProps, mapDispatchToProps)(Navigation);
+export default Routes;

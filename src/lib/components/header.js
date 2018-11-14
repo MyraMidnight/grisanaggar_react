@@ -1,9 +1,9 @@
 //the header
 
 import { connect } from 'react-redux';
-
 import React from 'react';
 import * as actions from '../../actions';
+
 
 class Header extends React.Component {
     handleButtonClick = (page)=>{
@@ -13,9 +13,12 @@ class Header extends React.Component {
     render() {
         return (
             <header className="container">
-                <button className="link" onClick={()=>{this.handleButtonClick("page-main")}}><h2>Header</h2></button>
-                <button className="link" onClick={()=>{this.handleButtonClick("page-dashboard")}}>Dashboard</button>
-                
+                <ul>
+                    <li><a href="/" >Home</a></li>
+                    <li><a href="/wiki">Wiki</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>    
+                         
             </header>
         )
     }

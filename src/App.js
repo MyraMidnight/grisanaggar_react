@@ -11,9 +11,7 @@ import { fetchPages } from './fetchData';
 const store = createStore(reducer);
 window.store = store;
 
-class App extends Component {
-
-  
+class App extends Component {  
   /*  =========================== COMPONENT DID MOUNT   */
   componentDidMount(){
     //fetches WP pages

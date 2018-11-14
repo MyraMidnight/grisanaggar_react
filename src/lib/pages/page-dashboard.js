@@ -2,7 +2,6 @@
 import React from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import MenuPages from '../components/menu-pages';
 
 class Dashboard extends React.Component {
     render() {
@@ -10,12 +9,19 @@ class Dashboard extends React.Component {
             <div id="wrapper">
                 <Header />
                 <nav id="sidebar" className="container">
-                    <MenuPages />
+                    {
+                        //If logged in, show list of things user can do
+                        // edit pages / delete pages
+                        // create pages
+                        // update profile/account
+                    }
                 </nav>
                 <main id="content-wrapper" className="container">
                     <article className="content">
                         <h2>Dashboard</h2>
-                        </article>
+                        <p>Post: {this.props.location.query.postTitle}</p>
+                        <p>Please login to access the dashboard options</p>
+                    </article>
                 </main>
                 <Footer />
             </div>
