@@ -2,6 +2,7 @@
   "name": "prototype",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://localhost/prototype/build/",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.16.4",
