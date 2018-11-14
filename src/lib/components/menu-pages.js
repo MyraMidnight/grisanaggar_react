@@ -1,15 +1,15 @@
 //header menu for desktop and bigger screens//the header
+//change this into a reusable menu template, feed it data to generate list
 
 import { connect } from 'react-redux';
 
 import React from 'react';
 import * as actions from '../../actions';
+import MenuList from './menu-list';
 
 class MenuPages extends React.Component {
     changePage = (page)=>{
         this.props.changeCurrentPage({
-            page: "page-single",
-            single: "page",
             data: page,
         });
     }
@@ -21,14 +21,7 @@ class MenuPages extends React.Component {
             <ul className="nav-pages nav-list">
                 
                 <h4>Pages</h4>
-                {this.props.pages.map((page, i)=>{
-                    return (
-                        //Each page li item
-                        <li key={i}>
-                            <button className="link" type="button" onClick={()=>{this.changePage(page)}} >{page.title}</button> 
-                        </li>
-                    )
-                })}
+                <MenuList list={this.props.pages} action={this.changePage} />
             </ul>
         )
     }
