@@ -16,7 +16,7 @@ const fetchPages = ()=>{
         const newPage = [];
         newPage["title"] = page.title.rendered;
         newPage["content"] = page.content.rendered;
-        newPage["slug"] = page.slug;
+        //newPage["slug"] = page.slug;
         newPage["description"] = page.excerpt.rendered.replace(/<[^>]+>/g, '');
         newPage["id"] = page.id;
         newPage["parent"] = page.parent;
@@ -38,20 +38,23 @@ const fetchWikiPages = ()=>{
   //http://localhost/prototype-wp-wiki/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:Pages&format=json
   //http://localhost/prototype-wp-wiki/wiki/api.php?action=parse&format=json&page=Main_Page
 
-    const wikiUrl = "http://localhost/prototype-wp-wiki/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:Pages&format=json";
-    const fetchHeader = {
-      mode:'no-cors',
-      credentials: 'include',
+     /*const fetchHeader = {
+        //method: 'GET',
+        //'Access-Control-Request-Method': 'GET',
+        //mode: 'cors',
+        //credentials: 'include',
+        //origin: "http://localhost:3000/",
+        //"Access-Control-Allow-Credentials": true,
       headers: {
-        "Access-Control-Allow-Credentials": false,
-        'Access-Control-Allow-Origin': "192.168.2.117:3000",
-        origin: "192.168.2.117:3000",
+        //'Access-Control-Allow-Origin': "http://localhost:3000/",
       }
-    };
-    return fetch(wikiUrl, fetchHeader).then((results)=>{
-      console.log("WikiPages: ", results)
+     };*/
+    return fetch(apiUrl + "/wiki/categories").then((results)=>{
+      console.log("WikiPages: ", results.json())
+      return results
     })
 }
+fetchWikiPages();
 /* ============= EXPORT ===*/
 const exp = {
     fetchPages: fetchPages,
