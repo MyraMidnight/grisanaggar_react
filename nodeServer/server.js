@@ -13,7 +13,8 @@ const localhost = "http://localhost/prototype-wp-wiki";
 *********** FETCH TO MEDIAWIKI
 */
 app.get("/api/wiki/categories", (req,res)=>{
-    const url = localhost + "/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:Pages&format=json";
+    const url = localhost + `/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:${req.headers.categorytitle}&format=json`;
+    console.log("fetch wiki category url: ", url)
     fetch(url).then( results => results.json())
     .then( json => res.json(json))
     .catch(error => console.log("error fetching from: " + url + ", ", error))

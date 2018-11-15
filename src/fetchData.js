@@ -9,6 +9,7 @@ const wpHeader = {
 const fetchPages = ()=>{
     return fetch(apiUrl+"/wp/pages", wpHeader).then(res=>res.json()).then((json)=>{
       const newPagesList = [];
+      //create a custom object to replace original in array
       json.forEach((page)=>{
         //create new object per page
         const newPage = [];
@@ -25,15 +26,17 @@ const fetchPages = ()=>{
 /* 
 ================ Fetch Pages from MediaWiki =============
 */
-const fetchWikiPages = ()=>{
-  return fetch(apiUrl + "/wiki/categories").then(res=>res.json()).then((json)=>{
+const fetchWikiCategory = (categorytitle)=>{
+  return fetch(apiUrl + "/wiki/categories", {headers:{categorytitle:categorytitle}}).then(res=>res.json()).then((json)=>{
       const newPagesList = [];
+      //since category does not include page content,
+      //we need to fetch the page content
       json.query.categorymembers.map((page)=>{
         const newPage = []
-        //after getting list of pages
-        //Fetch the content for wiki page
+        //Fetch the content
         fetch(apiUrl + "/wiki/page", {headers:{pageid: page.pageid}
         }).then(res=>res.json()).then((wikipage)=>{
+          //create "content" and then
           //remove all classes from html elements within the content
           newPage["content"] = wikipage.parse.text["*"].replace(/class=".*"/g, "");
         })
@@ -41,26 +44,14 @@ const fetchWikiPages = ()=>{
         newPage["id"] = page.pageid;
         newPage["title"] = page.title;
         newPagesList.push(newPage);
-        console.log("newPage: ", newPage)
       })
-      /*
-      json.query.categorymembers.forEach((page)=>{
-        const newPage = [];
-        //create new object per page
-        newPage["title"] = page.title;
-       //newPage["content"] = page.content.rendered;
-        newPage["id"] = page.pageid;
-        fetch(apiUrl + "/wiki/page", {headers:{pageid:page.pageid},}).then(res=>res.json()).then((wikipage)=>{
-          //newPage["content"] = wikipage.content;
-        }).then(end=>newPagesList.push(newPage))
-        
-      })*/
+      //return new array of pages
       return newPagesList
     })
 }
 /* ============= EXPORT ===*/
 const exp = {
     fetchPages: fetchPages,
-    fetchWikiPages: fetchWikiPages,
+    fetchWikiCategory: fetchWikiCategory,
 }
 module.exports = exp;

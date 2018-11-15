@@ -23,7 +23,6 @@ class Wiki extends React.Component {
             <div id="wrapper" className="page-sidebar">
                 <Header />
                 <nav id="sidebar" className="container">
-                    {console.log("wikipages: ", this.props.wikiPages)}
                     <ul>
                         <h4>Articles</h4>
                         <MenuList list={this.props.wikiPages} action={this.changePage}/>

@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 import reducer from './reducer';
 import Navigation from './lib/Navigation';
 import * as actions from './actions';
-import { fetchPages, fetchWikiPages } from './fetchData';
+import { fetchPages, fetchWikiCategory } from './fetchData';
 
 const store = createStore(reducer);
 window.store = store;
@@ -18,7 +18,7 @@ class App extends Component {
     fetchPages().then((pages)=>{
       store.dispatch(actions.getPages(pages));
     })
-    fetchWikiPages().then((pages)=>{
+    fetchWikiCategory("Pages").then((pages)=>{
       store.dispatch(actions.getWikiPages(pages));
     })
   }
