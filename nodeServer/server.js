@@ -14,10 +14,16 @@ const localhost = "http://localhost/prototype-wp-wiki";
 */
 app.get("/api/wiki/categories", (req,res)=>{
     const url = localhost + "/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:Pages&format=json";
-    fetch(url).then(
-        results => results.json())
-    .then(
-        json=>   res.json(json))
+    fetch(url).then( results => results.json())
+    .then( json => res.json(json))
+    .catch(error => console.log("error fetching from: " + url + ", ", error))
+})
+  //http://localhost/prototype-wp-wiki/wiki/api.php?action=parse&format=json&page=Main_Page
+  app.get("/api/wiki/page", (req,res)=>{
+    const url = localhost + `/wiki/api.php?action=parse&format=json&pageid=${req.headers.pageid}`;
+    console.log("fetch wiki page url: ", url)
+    fetch(url).then( results => results.json())
+    .then( json => res.json(json))
     .catch(error => console.log("error fetching from: " + url + ", ", error))
 })
 /*

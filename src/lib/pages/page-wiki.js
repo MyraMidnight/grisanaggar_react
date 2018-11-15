@@ -5,10 +5,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 //import ReactHtmlParser  from 'react-html-parser';
-
 import Header from '../components/header';
 import Footer from '../components/footer';
-//import MenuList from '../components/menu-list';
+import MenuList from '../components/menu-list';
+import ReactHtmlParser  from 'react-html-parser';
 
 class Wiki extends React.Component {
     changePage = (page)=>{
@@ -23,11 +23,16 @@ class Wiki extends React.Component {
             <div id="wrapper" className="page-sidebar">
                 <Header />
                 <nav id="sidebar" className="container">
-
+                    {console.log("wikipages: ", this.props.wikiPages)}
+                    <ul>
+                        <h4>Articles</h4>
+                        <MenuList list={this.props.wikiPages} action={this.changePage}/>
+                    </ul>
                 </nav>
                 <main id="content-wrapper" className="container">
                     <article className="content">
-                        <h2>Wiki page</h2>
+                        
+                    { ReactHtmlParser(this.props.currentPage.data.content)}  
                     </article>
                 </main>
                 <Footer />
@@ -38,7 +43,7 @@ class Wiki extends React.Component {
 
 const mapStateToProps = state => ({
     currentPage: state.currentPage,
-    pages: state.pages,
+    wikiPages: state.wikiPages,
 })
   
 const mapDispatchToProps = (dispatch)=>({

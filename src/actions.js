@@ -19,11 +19,11 @@ export const updateCurrentUser = (user)=>{
 export const updateNews = (news)=>{
     return {type: actionTypes.UPDATE_NEWS, payload:news}
 }
-//UPDATE_WIKI_NAV
-export const getWikiPages = (wiki)=>{
-    return {type: actionTypes.GET_WIKI_PAGES, payload:wiki}
-}
 //GET_PAGES
 export const getPages = (pages)=>{
     return {type: actionTypes.GET_PAGES, payload:pages}
+}
+//GET_WIKI_PAGES
+export const getWikiPages = (pages)=>{
+    return {type: actionTypes.GET_WIKI_PAGES, payload:pages}
 }

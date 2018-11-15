@@ -1,6 +1,7 @@
 
 import React from 'react';
-
+//takes in an array as props.list and uses
+// id and title
 
 class MenuList extends React.Component {
     changePage = (page)=>{

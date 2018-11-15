@@ -19,7 +19,7 @@ class App extends Component {
       store.dispatch(actions.getPages(pages));
     })
     fetchWikiPages().then((pages)=>{
-      store.dispatch(actions.getWikiPages(pages))
+      store.dispatch(actions.getWikiPages(pages));
     })
   }
   /*  =========================== RENDER   */

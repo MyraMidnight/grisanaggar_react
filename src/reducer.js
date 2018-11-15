@@ -20,7 +20,7 @@ const reducer = (state=defaultState, action)=>{
 		case 'UPDATE_NEWS':
 			return {...state, newsItems: action.payload};
         case 'GET_WIKI_PAGES':
-            return {...state, getWikiPages: action.payload};
+            return {...state, wikiPages: action.payload};
 		case 'GET_PAGES':
 			return {...state, pages: action.payload};
 		default:

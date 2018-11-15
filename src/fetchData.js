@@ -8,19 +8,13 @@ const wpHeader = {
 //Fetch pages
 const fetchPages = ()=>{
     return fetch(apiUrl+"/wp/pages", wpHeader).then(res=>res.json()).then((json)=>{
-      //console.log("list length: ", json.length)
-      let newPagesList = [];
+      const newPagesList = [];
       json.forEach((page)=>{
-        //console.log("Page: ", page);
         //create new object per page
         const newPage = [];
         newPage["title"] = page.title.rendered;
         newPage["content"] = page.content.rendered;
-        //newPage["slug"] = page.slug;
-        newPage["description"] = page.excerpt.rendered.replace(/<[^>]+>/g, '');
         newPage["id"] = page.id;
-        newPage["parent"] = page.parent;
-        newPage["order"] = page.menu_order;
 
         newPagesList.push(newPage)
       })
@@ -28,33 +22,42 @@ const fetchPages = ()=>{
     })
 }
 
-const wpAuth = ()=>{
-
-}
 /* 
 ================ Fetch Pages from MediaWiki =============
 */
 const fetchWikiPages = ()=>{
-  //http://localhost/prototype-wp-wiki/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:Pages&format=json
-  //http://localhost/prototype-wp-wiki/wiki/api.php?action=parse&format=json&page=Main_Page
-
-     /*const fetchHeader = {
-        //method: 'GET',
-        //'Access-Control-Request-Method': 'GET',
-        //mode: 'cors',
-        //credentials: 'include',
-        //origin: "http://localhost:3000/",
-        //"Access-Control-Allow-Credentials": true,
-      headers: {
-        //'Access-Control-Allow-Origin': "http://localhost:3000/",
-      }
-     };*/
-    return fetch(apiUrl + "/wiki/categories").then((results)=>{
-      console.log("WikiPages: ", results.json())
-      return results
+  return fetch(apiUrl + "/wiki/categories").then(res=>res.json()).then((json)=>{
+      const newPagesList = [];
+      json.query.categorymembers.map((page)=>{
+        const newPage = []
+        //after getting list of pages
+        //Fetch the content for wiki page
+        fetch(apiUrl + "/wiki/page", {headers:{pageid: page.pageid}
+        }).then(res=>res.json()).then((wikipage)=>{
+          //remove all classes from html elements within the content
+          newPage["content"] = wikipage.parse.text["*"].replace(/class=".*"/g, "");
+        })
+        //then create a 'newpage' object to return
+        newPage["id"] = page.pageid;
+        newPage["title"] = page.title;
+        newPagesList.push(newPage);
+        console.log("newPage: ", newPage)
+      })
+      /*
+      json.query.categorymembers.forEach((page)=>{
+        const newPage = [];
+        //create new object per page
+        newPage["title"] = page.title;
+       //newPage["content"] = page.content.rendered;
+        newPage["id"] = page.pageid;
+        fetch(apiUrl + "/wiki/page", {headers:{pageid:page.pageid},}).then(res=>res.json()).then((wikipage)=>{
+          //newPage["content"] = wikipage.content;
+        }).then(end=>newPagesList.push(newPage))
+        
+      })*/
+      return newPagesList
     })
 }
-fetchWikiPages();
 /* ============= EXPORT ===*/
 const exp = {
     fetchPages: fetchPages,
