@@ -17,6 +17,11 @@ class Welcome extends React.Component {
             data: page,
         });
     }
+    findPageContent = (id)=>{
+        return this.props.pages.find((page)=>{
+           return page.id === id;
+        })
+    }
     render() {
         //Sidebar should change when user selects 'dashboard'
         //to navigate the "backend"
@@ -32,7 +37,7 @@ class Welcome extends React.Component {
                 <main id="content-wrapper" className="container">
                     <article className="content">
                         <h2>{this.props.currentPage.data.title}</h2>
-                        { ReactHtmlParser(this.props.currentPage.data.content)}
+                        { ReactHtmlParser(this.props.currentPage.data.content)}                        
                     </article>
                 </main>
                 <Footer />

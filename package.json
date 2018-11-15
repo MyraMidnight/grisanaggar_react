@@ -4,8 +4,6 @@
   "private": true,
   "homepage": "http://localhost/prototype/build/",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.16.4",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-html-parser": "^2.0.2",

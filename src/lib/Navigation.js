@@ -19,7 +19,10 @@ class Navigation extends React.Component {
                 <Route //Wiki pages (currently WP pages)
                     path="/wiki" component={Wiki} />
                 <Route //The user dashboard, log in
-                    path="/dashboard" component={Dashboard} />
+                    path="/dashboard" render={()=>
+                        <Dashboard 
+                            wpDashboard={this.props.wpDashboard}  />
+                    } />
                 <Route //Editing or deleting pages
                     path="/edit" component={EditPage} />
                 <Route //Create new pages
@@ -34,6 +37,7 @@ class Navigation extends React.Component {
 const mapStateToProps = state => ({
     currentPage: state.currentPage,
     pages: state.pages,
+    wpDashboard: state.wpDashboard,
 })
   
 const mapDispatchToProps = (dispatch)=>({

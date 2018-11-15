@@ -25,3 +25,6 @@ yarn-error.log*
 *css.map
 /wiki
 /wordpress
+
+#nodeserver
+/nodeServer/node_modules

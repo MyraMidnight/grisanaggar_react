@@ -1,12 +1,13 @@
 const defaultState = {
     currentUser: {}, //is the user logged in? who is it?
+	wpDashboard: "http://192.168.2.117/prototype-wp-wiki/wordpress/wp-admin",
     pages:[], //wordpress pages
     wikiPages: [], //mediawiki articles
     currentPage:{//what page to display
         page: 'wiki',
 		data: {},
     }, 
-    newsItems: [], //wordpress posts
+	newsItems: [], //wordpress posts
 };
 
 const reducer = (state=defaultState, action)=>{

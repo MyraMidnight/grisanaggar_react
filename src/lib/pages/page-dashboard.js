@@ -18,9 +18,8 @@ class Dashboard extends React.Component {
                 </nav>
                 <main id="content-wrapper" className="container">
                     <article className="content">
-                        <h2>Dashboard</h2>
-                        <p>Post:</p>
-                        <p>Please login to access the dashboard options</p>
+                        {console.log("wpDashboard: ", this.props.wpDashboard)}
+                       <iframe src={this.props.wpDashboard} title="Grísanaggar WP Dashboard" height="100%" width="100%"/>
                     </article>
                 </main>
                 <Footer />

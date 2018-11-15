@@ -1,9 +1,13 @@
 /* 
-================ Fetch Pages from Wordpress =============
+================ WORDPRESS =============
 */
+const apiUrl = "http://localhost:3001/api";
+const wpHeader = {
+    credentials: 'same-origin'
+}
+//Fetch pages
 const fetchPages = ()=>{
-    const projectsURL = "http://localhost/prototype-wp-wiki/wordpress/wp-json/wp/v2/pages";
-    return fetch(projectsURL).then(res=>res.json()).then((json)=>{
+    return fetch(apiUrl+"/wp/pages", wpHeader).then(res=>res.json()).then((json)=>{
       //console.log("list length: ", json.length)
       let newPagesList = [];
       json.forEach((page)=>{
@@ -22,6 +26,10 @@ const fetchPages = ()=>{
       })
       return newPagesList;
     })
+}
+
+const wpAuth = ()=>{
+
 }
 /* 
 ================ Fetch Pages from MediaWiki =============
