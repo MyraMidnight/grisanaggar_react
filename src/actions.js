@@ -5,6 +5,7 @@ const actionTypes = {
     UPDATE_NEWS: 'UPDATE_NEWS',
     GET_WIKI_PAGES: 'GET_WIKI_PAGES',
     GET_PAGES: 'GET_PAGES',
+    GET_WIKI_CATEGORIES: 'GET_WIKI_CATEGORIES',
 
 }
 //CHANGE_CURRENT_PAGE
@@ -26,4 +27,8 @@ export const getPages = (pages)=>{
 //GET_WIKI_PAGES
 export const getWikiPages = (pages)=>{
     return {type: actionTypes.GET_WIKI_PAGES, payload:pages}
+}
+//GET_WIKI_PAGES
+export const getWikiCategories = (categories)=>{
+    return {type: actionTypes.GET_WIKI_CATEGORIES, payload:categories}
 }

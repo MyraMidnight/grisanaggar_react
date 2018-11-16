@@ -3,8 +3,9 @@ import React from 'react';
 import MenuItem from './menu-item';
 //takes in an array as props.list and uses
 // id and title
+//Trying to make a menu that automatically lists separate categories from wiki
 
-class MenuList extends React.Component {
+class MenuWiki extends React.Component {
     changePage = (page)=>{        
         const contentDiv = document.getElementById('content');
         contentDiv.innerHTML =  `<h1>${page.title}</h1> ${page.content}`;
@@ -12,15 +13,12 @@ class MenuList extends React.Component {
     render(){
         return(
             <ul>
-                {this.props.list.map((page, i)=>{
-                    return (
-                        //Each page li item
-                        <MenuItem key={i} page={page} />
-                    )
+                {this.props.list.map((category, i)=>{
+
                 })}
             </ul>
         )
     }
 }
 
-export default MenuList;
+export default MenuWiki;

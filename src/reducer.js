@@ -8,6 +8,7 @@ const defaultState = {
 		data: {},
     }, 
 	newsItems: [], //wordpress posts
+	wikiCategories: [],
 };
 
 const reducer = (state=defaultState, action)=>{
@@ -21,6 +22,8 @@ const reducer = (state=defaultState, action)=>{
 			return {...state, newsItems: action.payload};
         case 'GET_WIKI_PAGES':
             return {...state, wikiPages: action.payload};
+		case 'GET_WIKI_CATEGORIES':
+			return {...state, wikiCategories: action.payload};
 		case 'GET_PAGES':
 			return {...state, pages: action.payload};
 		default:

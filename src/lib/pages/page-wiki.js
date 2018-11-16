@@ -3,18 +3,18 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
 //import ReactHtmlParser  from 'react-html-parser';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import MenuList from '../components/menu-list';
-import ReactHtmlParser  from 'react-html-parser';
+import { fetchWikiCategory } from '../../fetchData';
 
 class Wiki extends React.Component {
-    changePage = (page)=>{
-        this.props.changeCurrentPage({
-            data: page,
-        });
+    renderMenu = (category)=>{
+        return fetchWikiCategory(category).then((pages)=>{
+            console.log("Wiki category: ", pages)
+            return pages
+        })
     }
     render() {
         //Sidebar should change when user selects 'dashboard'
@@ -22,16 +22,20 @@ class Wiki extends React.Component {
         return (
             <div id="wrapper" className="page-sidebar">
                 <Header />
-                <nav id="sidebar" className="container">
-                    <ul>
-                        <h4>Articles</h4>
-                        <MenuList list={this.props.wikiPages} action={this.changePage}/>
-                    </ul>
+                <nav id="sidebar" className="container">                        
+                    {console.log("wiki page categories: ", this.props.wikiCategories)}
+                    {this.props.wikiCategories.map((category, i)=>{
+                        return(
+                            <ul key={i}>
+                                <h4>{category.category}</h4>
+                                <MenuList list={category.pages} />
+                            </ul>
+                        )
+                    })}
                 </nav>
                 <main id="content-wrapper" className="container">
-                    <article className="content">
-                        
-                    { ReactHtmlParser(this.props.currentPage.data.content)}  
+                    <article id="content" className="content">
+                        <h2>Welcome to the wiki</h2>
                     </article>
                 </main>
                 <Footer />
@@ -43,9 +47,6 @@ class Wiki extends React.Component {
 const mapStateToProps = state => ({
     currentPage: state.currentPage,
     wikiPages: state.wikiPages,
+    wikiCategories: state.wikiCategories,
 })
-  
-const mapDispatchToProps = (dispatch)=>({
-    changeCurrentPage: (page) => {dispatch(actions.changeCurrentPage(page))}
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Wiki) ;
+export default connect(mapStateToProps)(Wiki) ;
