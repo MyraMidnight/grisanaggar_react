@@ -8,7 +8,10 @@ const port=3001;
 app.use(cors());
 app.use(express.json());
 
+
 const localhost = "http://localhost/prototype-wp-wiki";
+
+
 /*
 *********** FETCH TO MEDIAWIKI
 */
@@ -30,12 +33,22 @@ app.get("/api/wiki/categories", (req,res)=>{
 })
 /*
 *********** FETCH TO WORDPRESS
-* http://v2.wp-api.org/reference/pages/
+*  http://v2.wp-api.org/reference/pages/
+// https://github.com/WP-API/Basic-Auth
+// http://wp-api.org/node-wpapi/
 */
+const WPAPI = require('wpapi');
+const wp = new WPAPI({ endpoint: localhost + '/wp-json' })
+
 app.get("/api/wp/pages", (req,res)=>{
+    
     const url = localhost + `/wordpress/wp-json/wp/v2/pages?per_page=${req.headers.per_page}`;
-    fetch( url).then(results => results.json()).then((json)=>{
+    /*fetch( url).then(results => results.json()).then((json)=>{
         res.json(json)
+    }).catch(error => console.log("error fetching from: " + url + ", ", error))*/
+    wp.pages().then((pages)=>{
+        console.log("wp pages: ", pages)
+        res.json(pages)
     }).catch(error => console.log("error fetching from: " + url + ", ", error))
 })
 app.listen(port, ()=>{

@@ -1,17 +1,18 @@
-/* 
-================ WORDPRESS =============
-*/
+
 const apiUrl = "http://localhost:3001/api";
-//Fetch pages
+/* ============================================================================
+ WORDPRESS 
+// https://github.com/WP-API/Basic-Auth
+// http://wp-api.org/node-wpapi/
+============================================================================*/
+
+const wpLocation = "http://localhost/prototype-wp-wiki/wordpress"
+const WPAPI = require('wpapi');
+const wp = new WPAPI({ endpoint: wpLocation + '/wp-json' })
+
+/*===================== Fetch pages */
 const fetchPages = ()=>{
-  const apiFetchHeader = {
-    headers:{
-      //what category to fetch
-      per_page:50,
-    }
-  };
-  //todo: group pages by parent
-  return fetch(apiUrl+"/wp/pages", apiFetchHeader).then(res=>res.json()).then((json)=>{
+  return wp.pages().then((json)=>{
     const newPagesList = [];
     //create a custom object to replace original in array
     json.forEach((page)=>{
@@ -20,20 +21,32 @@ const fetchPages = ()=>{
       newPage["title"] = page.title.rendered;
       newPage["content"] = page.content.rendered;
       newPage["id"] = page.id;
-      newPage["parent"] = "parent_" + page.parent;
       newPagesList.push(newPage)
     })
     return newPagesList;
-  })/*.then((pageList)=>{
-    const groupParents = pageList.groupBy('parent');
-    //console.log("parents: ", groupParents)
-    return groupParents
-  })*/
+  }).catch(err=>console.log("ERROR fetching from Wordpress", err))
 }
 
-/* 
-================ Fetch Pages from MediaWiki =============
-*/
+/*===================== Authentication */
+const wpAuthenticate = (username, password)=>{
+  //Authenticate the user
+  const apiPromise = WPAPI.discover(wpLocation).then((site)=>{
+    return site.auth({
+      username: username,
+      password: password
+    })
+  }) 
+  //After the user has been authenticated
+  apiPromise.then(( site )=>{
+
+  })
+} 
+
+
+
+/* ============================================================================
+ MEDIAWIKI 
+============================================================================*/
 const fetchWikiCategory = (categorytitle)=>{
   const apiFetchHeader = {
     headers:{
@@ -91,8 +104,11 @@ const fetchWikiCategories = (categories)=>{
 }
 /* ============= EXPORT ===*/
 const exp = {
-    fetchPages: fetchPages,
+    //MediaWiki
     fetchWikiCategory: fetchWikiCategory,
-    fetchWikiCategories: fetchWikiCategories,
+    fetchWikiCategories: fetchWikiCategories, //fetch wiki pages under category
+    //WordPress
+    wpPages: fetchPages,
+    wpAuthenticate: wpAuthenticate, //authenticate wordpress user
 }
 module.exports = exp;

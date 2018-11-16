@@ -23,13 +23,12 @@ class Wiki extends React.Component {
             <div id="wrapper" className="page-sidebar">
                 <Header />
                 <nav id="sidebar" className="container">                        
-                    {console.log("wiki page categories: ", this.props.wikiCategories)}
                     {this.props.wikiCategories.map((category, i)=>{
                         return(
-                            <ul key={i}>
+                            <section key={i}>
                                 <h4>{category.category}</h4>
                                 <MenuList list={category.pages} />
-                            </ul>
+                            </section>
                         )
                     })}
                 </nav>
