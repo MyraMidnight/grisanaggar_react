@@ -5,10 +5,7 @@ import MenuItem from './menu-item';
 // id and title
 
 class MenuList extends React.Component {
-    changePage = (page)=>{        
-        const contentDiv = document.getElementById('content');
-        contentDiv.innerHTML =  `<h1>${page.title}</h1> ${page.content}`;
-    }
+
     render(){
         return(
             <ul>

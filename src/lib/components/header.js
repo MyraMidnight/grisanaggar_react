@@ -15,7 +15,7 @@ class Header extends React.Component {
         return (
             <header id="header" className="container">
                 <ul>
-                    <li><NavLink to="/" >Home</NavLink></li>
+                    <li><NavLink to="/" activeClassName="headerActive">Home</NavLink></li>
                     <li><NavLink to="/wiki">Wiki</NavLink></li>
                     <li><NavLink to="/dashboard">Dashboard</NavLink></li>
                 </ul>           

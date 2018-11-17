@@ -12,7 +12,12 @@ class EditPage extends React.Component {
                 <main id="content-wrapper" className="container">
                     <article className="content">
                         <h2>Edit page</h2>
-                        </article>
+                        <form>
+                            <label>Title: <br/><input type="text" name="page-title" /></label><br/>
+                            <label>Content: <br/><textarea name="page-content"></textarea></label><br/>
+                            <button type="submit">save</button>
+                        </form>
+                    </article>
                 </main>
                 <Footer />
             </div>

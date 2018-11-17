@@ -2,8 +2,20 @@
 import React from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import Login from '../components/auth/user-login';
+import { wpAuthenticate, wpToken } from '../../fetchData';
 
 class Dashboard extends React.Component {
+    handleAuthentication = (formData)=>{
+        /*
+        //send the login info to authenticator
+        wpAuthenticate(formData.username, formData.password).then((site)=>{
+            console.log("You've been authenticated")
+        })*/
+        wpToken(formData.username, formData.password).then((token)=>{
+            console.log("You got a token! ", token)
+        })
+    }
     render() {
         return (
             <div id="wrapper">
@@ -18,8 +30,8 @@ class Dashboard extends React.Component {
                 </nav>
                 <main id="content-wrapper" className="container">
                     <article className="content">
-                        {console.log("wpDashboard: ", this.props.wpDashboard)}
-                       <iframe src={this.props.wpDashboard} title="Grísanaggar WP Dashboard" height="100%" width="100%"/>
+                        <Login action={this.handleAuthentication}/>
+                      
                     </article>
                 </main>
                 <Footer />

@@ -2,11 +2,11 @@
 const apiUrl = "http://localhost:3001/api";
 /* ============================================================================
  WORDPRESS 
+============================================================================*/
 // https://github.com/WP-API/Basic-Auth
 // http://wp-api.org/node-wpapi/
-============================================================================*/
 
-const wpLocation = "http://localhost/prototype-wp-wiki/wordpress"
+const wpLocation = "http://192.168.2.117/prototype-wp-wiki/wordpress"
 const WPAPI = require('wpapi');
 const wp = new WPAPI({ endpoint: wpLocation + '/wp-json' })
 
@@ -28,22 +28,30 @@ const fetchPages = ()=>{
 }
 
 /*===================== Authentication */
+//https://aamplugin.com/help/how-to-authenticate-wordpress-user-with-jwt-token
+//added AAM plugin to manage access
+// password for test account, grisanaggar : zNBf((ZGh2m&RwQswAipYaJl
 const wpAuthenticate = (username, password)=>{
-  //Authenticate the user
-  const apiPromise = WPAPI.discover(wpLocation).then((site)=>{
-    return site.auth({
-      username: username,
-      password: password
-    })
-  }) 
-  //After the user has been authenticated
-  apiPromise.then(( site )=>{
-
+  const apiFetchHeader = {
+    headers:{
+      username:username,
+      password: password,
+    }
+  };
+  console.log("authenticating...")
+  return fetch(apiUrl + "/wp/authenticate", apiFetchHeader).then((site)=>{ console.log("Authentication success")})
+}
+const wpToken = (username, password)=>{
+  const apiFetchHeader = {
+    headers:{
+      username:username,
+      password: password,
+    }
+  };
+  return fetch(apiUrl + "/wp/token", apiFetchHeader ).then((token)=>{
+    console.log("Recieved token: ", token)
   })
-} 
-
-
-
+}
 /* ============================================================================
  MEDIAWIKI 
 ============================================================================*/
@@ -110,5 +118,6 @@ const exp = {
     //WordPress
     wpPages: fetchPages,
     wpAuthenticate: wpAuthenticate, //authenticate wordpress user
+    wpToken: wpToken,
 }
 module.exports = exp;
