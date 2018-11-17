@@ -11,22 +11,28 @@ class Header extends React.Component {
         this.props.changeCurrentPage({page: page});
         return false
     }
-
     headerTitle = ({match})=>{
         //playing a bit with route location parameters
         // https://reacttraining.com/react-router/web/example/url-params
         const location = match.params.location;
         const switchTitle = ()=>{
+            let title = "Hæhæ";
             switch(location){
                 case "wiki": 
-                    return "Grísanaggar Wiki"
+                    title= "Grísanaggar Wiki"
+                    break;
                 case "dashboard":
-                    return "Stjórnborð"
+                    title= "Stjórnborð"
+                    break;
                 case "pages":
-                    return "Ýmislegt"
+                    title= "Ýmislegt"
+                    break;
+                case "":
                 default:
-                    return "Velkomin!"
+                    title= "Velkomin!"
+                    break;
             }
+            return title
         }
         return(
             <h1>
@@ -38,20 +44,25 @@ class Header extends React.Component {
     render() {
         return (
             <header id="header" className="container">
-                <ul>
-                    <li><NavLink to="/pages" activeClassName="headerActive">Home</NavLink></li>
-                    <li><NavLink to="/wiki">Wiki</NavLink></li>
-                    <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-                </ul>
+                <nav>
+                    <ul>
+                        {this.props.headerLinks.map((link, i)=>(
+                            //Render header links from redux state
+                            <li key={i}>
+                                <NavLink to={link.path} activeClassName="headerActive">{link.link}</NavLink>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
                 <Route path="/:location" component={this.headerTitle}  />         
             </header>
         )
     }
 }
 
-const mapStateToProps = (state)=>{
-    return state
-}
+const mapStateToProps = (state)=>({
+    headerLinks: state.headerLinks,
+})
 
 const mapDispatchToProps = (dispatch)=>({
     changeCurrentPage: (page) => {dispatch(actions.changeCurrentPage(page))}

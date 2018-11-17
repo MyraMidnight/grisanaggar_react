@@ -43,7 +43,7 @@ const wp = new WPAPI({ endpoint: wpJson });
 
 /*=====================  Get JWT token from AAM plugin */
 app.get("/api/wp/token", (req, res)=>{
-    apiHeader = {
+    const apiHeader = {
         method: "POST",
         body: JSON.stringify({
             username: req.headers.username,

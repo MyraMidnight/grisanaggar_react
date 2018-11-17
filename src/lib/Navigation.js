@@ -41,6 +41,7 @@ const mapStateToProps = state => ({
     currentPage: state.currentPage,
     pages: state.pages,
     wpDashboard: state.wpDashboard,
+    headerLinks: state.headerLinks,
 })
   
 const mapDispatchToProps = (dispatch)=>({

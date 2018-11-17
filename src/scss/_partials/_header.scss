@@ -1,3 +1,15 @@
  #header {
     display:flex;
+    flex-direction:column-reverse;
+    justify-content:flex-start;
+    align-items: center;
+    & nav ul {
+        display:flex;
+        flex-direction: row;
+        flex-wrap:wrap;
+        & li {
+            display:inline-block;
+            margin:8px;
+        }
+    }
 }

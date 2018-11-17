@@ -9,6 +9,28 @@ const defaultState = {
     }, 
 	newsItems: [], //wordpress posts
 	wikiCategories: [],
+	headerLinks: [{	
+			component : "Main",
+			path : "/", 
+			link : "Heim", 
+			title : "Velkomin"
+		},{
+			component: "Wiki",
+			path: "/wiki",
+			link: "Wiki",
+			title: "Grísanaggar Wiki",
+		},{
+			component: "Dashboard",
+			path: "/dashboard",
+			link: "Dashboard",
+			title: "Stjórnborð",
+		},{
+			component: "WpPages",
+			path: "/pages",
+			link: "Ýmislegt",
+			title: "Ýmislegt",
+		}
+	]
 };
 
 const reducer = (state=defaultState, action)=>{

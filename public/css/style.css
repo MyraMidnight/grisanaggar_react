@@ -1,6 +1,13 @@
 * {
   box-sizing: border-box;
-  margin: 0; }
+  margin: 0;
+  padding: 0; }
+
+a {
+  text-decoration: none; }
+
+a:hover, a:focus, a:active {
+  text-decoration: underline; }
 
 html {
   font-size: 16px;
@@ -89,6 +96,16 @@ button.link:hover {
     margin-left: 0;
     border-radius: 0 5px 5px 0; } }
 #header {
-  display: flex; }
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  align-items: center; }
+  #header nav ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
+    #header nav ul li {
+      display: inline-block;
+      margin: 8px; }
 
 /*# sourceMappingURL=style.css.map */
