@@ -18,6 +18,7 @@ const fetchPages = ()=>{
     json.forEach((page)=>{
       //create new object per page
       const newPage = [];
+      newPage["type"] = "page";
       newPage["title"] = page.title.rendered;
       newPage["content"] = page.content.rendered;
       newPage["id"] = page.id;
@@ -41,6 +42,7 @@ const wpAuthenticate = (username, password)=>{
   console.log("authenticating...")
   return fetch(apiUrl + "/wp/authenticate", apiFetchHeader).then((site)=>{ console.log("Authentication success")})
 }
+//Fetch a session token from wordpress
 const wpToken = (username, password)=>{
   const apiFetchHeader = {
     headers:{
@@ -70,6 +72,7 @@ const fetchWikiCategory = (categorytitle)=>{
       const newPage = [];
       newPage["id"] = page.pageid;
       newPage["title"] = page.title;
+      newPage["type"] = "wiki";
       //Fetch the content
       fetch(apiUrl + "/wiki/page", {headers:{pageid: page.pageid}
       }).then(res=>res.json()).then((wikipage)=>{

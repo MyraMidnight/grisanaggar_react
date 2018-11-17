@@ -26,8 +26,7 @@ class Wiki extends React.Component {
                     {this.props.wikiCategories.map((category, i)=>{
                         return(
                             <section key={i}>
-                                <h4>{category.category}</h4>
-                                <MenuList list={category.pages} />
+                                <MenuList list_title={category.category} list={category.pages}/>
                             </section>
                         )
                     })}

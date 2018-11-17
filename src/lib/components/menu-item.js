@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
 //takes in an array as props.list and uses
 // id and title
 
@@ -9,13 +11,22 @@ class MenuItem extends React.Component {
         contentDiv.innerHTML =  `<h1>${page.title}</h1> ${page.content}`;
     }
     render(){
+        //const pageLink = toString(this.props.location) + "?page=$" + toString(this.props.page.id);
         return( 
             <li>
-                <button className="link" type="button" onClick={()=>{this.changePage(this.props.page)}} >{this.props.page.title}</button> 
+                <Link className="link" 
+                    to={{ 
+                        search: `?type=${this.props.page.type}?index=${this.props.index}`
+                            
+                    }} 
+                    onClick={()=>{this.changePage(this.props.page)}}>{this.props.page.title}</Link>
             </li>
            
         )
     }
 }
 
-export default MenuItem;
+const mapStateToProps = state => (
+     state
+)
+export default withRouter(connect(mapStateToProps)(MenuItem));

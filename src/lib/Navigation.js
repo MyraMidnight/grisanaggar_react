@@ -9,6 +9,7 @@ import Wiki from './pages/page-wiki';
 import Dashboard from './pages/page-dashboard';
 import EditPage from './pages/page-edit';
 import CreatePage from './pages/page-create';
+import WpPages from './pages/page-pages';
 
 class Navigation extends React.Component {
     render() {
@@ -16,6 +17,8 @@ class Navigation extends React.Component {
             <Switch>
                 <Route //The welcome screen
                     exact path="/" component={Welcome} />
+                <Route //Wiki pages (currently WP pages)
+                    path="/pages" component={WpPages} />
                 <Route //Wiki pages (currently WP pages)
                     path="/wiki" component={Wiki} />
                 <Route //The user dashboard, log in
