@@ -1,3 +1,11 @@
+/* ============================================================================
+ CONTENT 
+============================================================================*/
+#content-wrapper{
+    flex-grow:1;
+    background:white;
+    border-radius: $rounded-inner;
+  }
 #wrapper #content {
     padding:16px;
 
