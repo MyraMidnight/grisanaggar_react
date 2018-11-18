@@ -18,13 +18,23 @@
         &:nth-of-type(even){
             background:$white-dark;
         }
-    }
-    & li + li {
-        border-top: solid 1px $gray;
+        & + li {
+        border-top: solid 1px $gray; 
+        }
     }
     & button {
         width:100%;
         text-align:left;
+    }
+    & li a {
+        padding:4px 8px;
+        &.active, &:hover, &:focus {
+            border-bottom: solid 3px $primary-color-light;
+        }
+    }
+    & a.link {
+        display:block;
+        padding-left:8px;
     }
 }
 @include breakpoint(small){

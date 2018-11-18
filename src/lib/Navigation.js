@@ -2,9 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 //pages
-import Welcome from './pages/page-main';
 import Wiki from './pages/page-wiki';
 import Dashboard from './pages/page-dashboard';
 import EditPage from './pages/page-edit';
@@ -15,23 +14,13 @@ class Navigation extends React.Component {
     render() {
         return (
             <Switch>
-                <Route //The welcome screen
-                    exact path="/" component={Welcome} />
-                <Route //Wiki pages (currently WP pages)
-                    path="/pages" component={WpPages} />
-                <Route //Wiki pages (currently WP pages)
-                    path="/wiki" component={Wiki} />
-                <Route //The user dashboard, log in
-                    path="/dashboard" render={()=>
-                        <Dashboard 
-                            wpDashboard={this.props.wpDashboard}  />
-                    } />
-                <Route //Editing or deleting pages
-                    path="/edit" component={EditPage} />
-                <Route //Create new pages
-                    path="/create" component={CreatePage} />
-                <Route // when none of the above match, <NoMatch> will be rendered 
-                    component={Wiki} />
+                <Route path="/pages" component={WpPages} />
+                <Route path="/wiki" component={Wiki} />
+                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/edit" component={EditPage} />
+                <Route path="/create" component={CreatePage} />
+                <Redirect exact from="/" to="/pages" />
+                <Route component={Wiki} />
             </Switch>
         )
     }

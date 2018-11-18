@@ -16,7 +16,7 @@ class Header extends React.Component {
         // https://reacttraining.com/react-router/web/example/url-params
         const location = match.params.location;
         const switchTitle = ()=>{
-            let title = "Hæhæ";
+            let title = "hæhæ"
             switch(location){
                 case "wiki": 
                     title= "Grísanaggar Wiki"
@@ -27,7 +27,6 @@ class Header extends React.Component {
                 case "pages":
                     title= "Ýmislegt"
                     break;
-                case "":
                 default:
                     title= "Velkomin!"
                     break;
@@ -49,12 +48,12 @@ class Header extends React.Component {
                         {this.props.headerLinks.map((link, i)=>(
                             //Render header links from redux state
                             <li key={i}>
-                                <NavLink to={link.path} activeClassName="headerActive">{link.link}</NavLink>
+                                <NavLink to={link.path} activeClassName="active">{link.link}</NavLink>
                             </li>
                         ))}
                     </ul>
                 </nav>
-                <Route path="/:location" component={this.headerTitle}  />         
+                <Route path="/:location" component={this.headerTitle}  />    
             </header>
         )
     }

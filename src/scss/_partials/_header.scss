@@ -3,13 +3,20 @@
     flex-direction:column-reverse;
     justify-content:flex-start;
     align-items: center;
-    & nav ul {
-        display:flex;
-        flex-direction: row;
-        flex-wrap:wrap;
-        & li {
-            display:inline-block;
-            margin:8px;
+    
+}
+#header nav ul {
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    & li {
+        margin: 0 4px;
+        & a {
+            padding:4px 8px;
+            &.active, &:hover, &:focus {
+                border-bottom: solid 3px $primary-color-light;
+            }
         }
     }
+
 }

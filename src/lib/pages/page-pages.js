@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-import MenuList from '../components/menu-list';
+import MenuList from '../components/menu/menu-list';
 
 class WpPages extends React.Component {
 

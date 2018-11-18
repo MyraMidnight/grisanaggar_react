@@ -2,17 +2,17 @@
 @import '_partials/variables';
 @import '_partials/mixins';
 
-* {
-  box-sizing: border-box;
-  margin:0;
-  padding:0;
-}
-a {  text-decoration:none;}
-a:hover, a:focus, a:active { text-decoration: underline;}
 html{
   font-size:16px;
   line-height:1.5rem;
 }
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  line-height:1.5rem;
+}
+a {  text-decoration:none;}
 button.link {
     background:none;
     border:none;
@@ -48,9 +48,17 @@ button.link:hover {
   background:white;
   border-radius: $rounded-inner;
 }
-
+//All navigation links will fill out their list element
+nav ul li {
+  list-style-type: none;
+  & a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+}
 @import '_partials/grid'; 
 @import '_partials/sidebar';
+@import '_partials/content';
 @import '_partials/header';
 @import '_partials/footer';
-@import '_partials/content';

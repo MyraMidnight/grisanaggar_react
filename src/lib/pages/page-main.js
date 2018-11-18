@@ -3,9 +3,11 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import MenuWiki from '../components/menu/menu-wiki';
+import MenuPages from '../components/menu/menu-pages';
 
 //import MenuList from '../components/menu-list';
 
@@ -23,7 +25,8 @@ class Welcome extends React.Component {
             <div id="wrapper" className="page-sidebar">
                 <Header />
                 <nav id="sidebar" className="container">
-                    
+                    <Route path="/wiki" component={MenuWiki} />
+                    <Route path="/pages" component={MenuPages} />
                 </nav>
                 <main id="content-wrapper" className="container">
                     <article id="content" className="content">  
