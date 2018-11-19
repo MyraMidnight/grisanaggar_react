@@ -6,6 +6,7 @@ const actionTypes = {
     GET_WIKI_PAGES: 'GET_WIKI_PAGES',
     GET_PAGES: 'GET_PAGES',
     GET_WIKI_CATEGORIES: 'GET_WIKI_CATEGORIES',
+    GET_WP_CATEGORIES: 'GET_WP_CATEGORIES'
 
 }
 //CHANGE_CURRENT_PAGE
@@ -31,4 +32,8 @@ export const getWikiPages = (pages)=>{
 //GET_WIKI_PAGES
 export const getWikiCategories = (categories)=>{
     return {type: actionTypes.GET_WIKI_CATEGORIES, payload:categories}
+}
+//GET_WP_CATEGORIES
+export const getWpCategories = (categories)=>{
+    return {type: actionTypes.GET_WP_CATEGORIES, payload:categories}
 }

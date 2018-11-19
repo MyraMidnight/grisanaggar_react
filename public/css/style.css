@@ -1,26 +1,15 @@
 html {
   font-size: 16px;
   line-height: 1.5rem; }
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  line-height: 1.5rem; }
-
-a {
-  text-decoration: none; }
-
-button.link {
-  background: none;
-  border: none; }
-
-button.link:hover {
-  cursor: pointer;
-  color: blue; }
-
-#root {
-  min-height: 100vh; }
+  html #root {
+    min-height: 100vh; }
+  html * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5rem; }
+  html a {
+    text-decoration: none; }
 
 #wrapper {
   width: 100%;
@@ -37,29 +26,20 @@ button.link:hover {
   #wrapper .container + .container {
     margin-top: 0; }
 
-nav ul li {
-  list-style-type: none; }
-  nav ul li a {
-    display: block;
-    width: 100%;
-    height: 100%; }
-
 /* ============================================================================
  GRID 
 ============================================================================*/
-#wrapper header {
+#wrapper #header {
   grid-area: header; }
-
-#wrapper footer {
+#wrapper #footer {
   grid-area: footer; }
-
-#sidebar {
+#wrapper #sidebar {
   grid-area: sidebar; }
-
-#content-wrapper {
+#wrapper #content-wrapper {
   grid-area: content; }
 
 @supports (display: grid) {
+  /* GRID breakpoints (if viewer supports grid) */
   @media (min-width: 576px) {
     #wrapper {
       margin: auto;
@@ -71,6 +51,15 @@ nav ul li {
 /* ============================================================================
  SIDEBAR 
 ============================================================================*/
+nav ul li {
+  /* All navigation links will fill out their list element */
+  list-style-type: none; }
+  nav ul li a {
+    display: block;
+    width: 100%;
+    height: 100%; }
+
+/*=====================  SIDEBAR */
 #wrapper #sidebar {
   background: #c099ff; }
 
@@ -78,29 +67,30 @@ nav ul li {
   list-style-type: none;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 0; }
   #sidebar ul h4 {
+    /* group/category title*/
     text-align: center; }
   #sidebar ul li {
-    display: inline-block;
     height: 1.5rem; }
     #sidebar ul li:nth-of-type(odd) {
+      /* Coloring every odd nav item */
       background: #fff; }
     #sidebar ul li:nth-of-type(even) {
+      /* Coloring every even nav item */
       background: #f4f4f4; }
     #sidebar ul li + li {
+      /* thin border between list items */
       border-top: solid 1px #e0e0e0; }
-  #sidebar ul button {
-    width: 100%;
-    text-align: left; }
-  #sidebar ul li a {
-    padding: 4px 8px; }
-    #sidebar ul li a.active, #sidebar ul li a:hover, #sidebar ul li a:focus {
-      border-bottom: solid 3px #c099ff; }
-  #sidebar ul a.link {
-    display: block;
-    padding-left: 8px; }
+    #sidebar ul li a {
+      /* links within list items */
+      height: 2rem;
+      padding: 4px 8px; }
+      #sidebar ul li a.active, #sidebar ul li a:hover, #sidebar ul li a:focus {
+        border-bottom: solid 3px #c099ff; }
 
+/*=====================  SIDEBAR BREAKPOINT */
 @media (min-width: 576px) {
   #wrapper #sidebar.container {
     margin-right: 0;

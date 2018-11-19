@@ -1,6 +1,30 @@
 
 const apiUrl = "http://localhost:3001/api";
 /* ============================================================================
+ GENERAL  
+============================================================================*/
+
+const fetchCategory = (categories, fetchPages)=>{
+  const myPromise = new Promise((resolve, reject)=>{
+    //categories will be put into this object
+    const groupCategories=[];
+    //go through the array of listed categories
+    categories.forEach((category)=>{
+      fetchPages(category).then((results)=>{
+        //create object for each category with pages
+        const newCategory = {
+          category: category,
+          pages: results
+        }
+        groupCategories.push(newCategory);
+      })
+    })
+    resolve(groupCategories)
+  })
+  return myPromise
+  
+}
+/* ============================================================================
  WORDPRESS 
 ============================================================================*/
 // https://github.com/WP-API/Basic-Auth
@@ -12,6 +36,14 @@ const wp = new WPAPI({ endpoint: wpLocation + '/wp-json' })
 
 /*===================== Fetch pages */
 const fetchPages = ()=>{
+  const wpFetchType = (category)=>{
+    switch(category){
+      case null:
+      default: 
+        return wp.pages();
+      
+    }
+  }
   return wp.pages().then((json)=>{
     const newPagesList = [];
     //create a custom object to replace original in array
@@ -22,12 +54,44 @@ const fetchPages = ()=>{
       newPage["title"] = page.title.rendered;
       newPage["content"] = page.content.rendered;
       newPage["id"] = page.id;
+      //get the featured media image of post
+      wp.media().then((media)=>{
+        const mediaFile = media.find(file=>file.id === page.featured_media).source_url;
+        newPage["image"] = mediaFile;
+        return mediaFile
+      });
       newPagesList.push(newPage)
     })
     return newPagesList;
   }).catch(err=>console.log("ERROR fetching from Wordpress", err))
 }
 
+/*===================== Fetch categories  */
+const fetchWpCategories = ()=>{
+  const myPromise = new Promise((resolve, reject)=>{
+
+  })
+  /*return wp.pages().then((json)=>{
+    const newPagesList = [];
+    //create a custom object to replace original in array
+    json.forEach((page)=>{
+      //create new object per page
+      const newPage = [];
+      newPage["type"] = "page";
+      newPage["title"] = page.title.rendered;
+      newPage["content"] = page.content.rendered;
+      newPage["id"] = page.id;
+      //get the featured media image of post
+      wp.media().then((media)=>{
+        const mediaFile = media.find(file=>file.id === page.featured_media).source_url;
+        newPage["image"] = mediaFile;
+        return mediaFile
+      });
+      newPagesList.push(newPage)
+    })
+    return {category: "pages", pages: newPagesList};
+  }).catch(err=>console.log("ERROR fetching from Wordpress", err))*/
+}
 /*===================== Authentication */
 //https://aamplugin.com/help/how-to-authenticate-wordpress-user-with-jwt-token
 //added AAM plugin to manage access
@@ -54,6 +118,7 @@ const wpToken = (username, password)=>{
     console.log("Recieved token: ", token)
   })
 }
+
 /* ============================================================================
  MEDIAWIKI 
 ============================================================================*/
@@ -102,7 +167,7 @@ const fetchWikiCategories = (categories)=>{
       fetchWikiCategory(category).then((results)=>{
         //create object for each category with pages
         const newCategory = {
-          category: category,
+          title: category,
           pages: results
         }
         groupCategories.push(newCategory);
@@ -116,11 +181,12 @@ const fetchWikiCategories = (categories)=>{
 /* ============= EXPORT ===*/
 const exp = {
     //MediaWiki
-    fetchWikiCategory: fetchWikiCategory,
-    fetchWikiCategories: fetchWikiCategories, //fetch wiki pages under category
+    wikiCategory: fetchWikiCategory,
+    wikiCategories: fetchWikiCategories, //fetch wiki pages under category
     //WordPress
     wpPages: fetchPages,
     wpAuthenticate: wpAuthenticate, //authenticate wordpress user
     wpToken: wpToken,
+    wpCategories: fetchWpCategories
 }
 module.exports = exp;

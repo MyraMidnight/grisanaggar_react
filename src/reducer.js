@@ -9,6 +9,7 @@ const defaultState = {
     }, 
 	newsItems: [], //wordpress posts
 	wikiCategories: [],
+	wpCategories: [],
 	headerLinks: [{
 			component: "Wiki",
 			path: "/wiki",
@@ -43,6 +44,8 @@ const reducer = (state=defaultState, action)=>{
 			return {...state, wikiCategories: action.payload};
 		case 'GET_PAGES':
 			return {...state, pages: action.payload};
+		case 'GET_WP_CATEGORIES':
+			return {...state, wpCategories: action.payload};
 		default:
 			return state;
 	}

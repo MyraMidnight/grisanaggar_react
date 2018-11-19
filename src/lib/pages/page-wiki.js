@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 //import ReactHtmlParser  from 'react-html-parser';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import MenuList from '../components/menu/menu-list';
+import MenuCategories from '../components/menu/menu-categories';
 import { fetchWikiCategory } from '../../fetchData';
 import { NavLink } from 'react-router-dom';
 
@@ -36,14 +36,8 @@ class Wiki extends React.Component {
         return (
             <div id="wrapper" className="page-sidebar">
                 <Header />
-                <nav id="sidebar" className="container">                        
-                    {this.props.wikiCategories.map((category, i)=>{
-                        return(
-                            <section key={i}>
-                                <MenuList list_title={category.category} list={category.pages}/>
-                            </section>
-                        )
-                    })}
+                <nav id="sidebar" className="container">          
+                    <MenuCategories categories={this.props.wikiCategories} />        
                 </nav>
                 <main id="content-wrapper" className="container">
                     <article id="content" className="content">

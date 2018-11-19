@@ -2,23 +2,26 @@
  GRID 
 ============================================================================*/
 
-#wrapper header {
-  grid-area: header;
+#wrapper {
+  & #header {
+    grid-area: header;
+  }
+  & #footer {
+    grid-area:footer;
+  }
+  & #sidebar {
+    grid-area: sidebar;
+  }
+  & #content-wrapper{
+    grid-area: content;
+  }
 }
-#wrapper footer {
-  grid-area:footer;
-}
-#sidebar {
-  grid-area: sidebar;
-}
-#content-wrapper{
-  grid-area: content;
-}
+
+
+
 @supports (display:grid){
-  @include breakpoint(small){   
-    #root{ 
-      //padding:32px;
-    }   
+  /* GRID breakpoints (if viewer supports grid) */
+  @include breakpoint(small){     
     #wrapper {
       margin:auto; 
       display:grid;

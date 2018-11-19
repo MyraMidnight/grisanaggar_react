@@ -23,10 +23,7 @@ class WpPages extends React.Component {
             <div id="wrapper" className="page-sidebar">
                 <Header />
                 <nav id="sidebar" className="container">
-                    <ul>
-                        <h4>Pages</h4>
-                        <MenuList list={this.props.pages} />
-                    </ul>
+                    <MenuList pages={this.props.pages} title={"Pages"}/>
                 </nav>
                 <main id="content-wrapper" className="container">
                     <article id="content" className="content">  
@@ -42,6 +39,7 @@ class WpPages extends React.Component {
 const mapStateToProps = state => ({
     currentPage: state.currentPage,
     pages: state.pages,
+    wpCategories: state.wpCategories,
 })
 
 export default withRouter(connect(mapStateToProps)(WpPages)) ;
