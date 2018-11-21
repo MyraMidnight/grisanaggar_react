@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 import reducer from './reducer';
 import Navigation from './lib/Navigation';
 import * as actions from './actions';
-import { wpPages, wikiCategories, wpCategories } from './fetchData';
+import { wpPages, wikiCategories, wpCategory } from './fetchData';
 
 const store = createStore(reducer);
 window.store = store;
@@ -18,9 +18,9 @@ class App extends Component {
     wpPages().then((pages)=>{
       store.dispatch(actions.getPages(pages));
     })
-    /*wpCategories().then((categories)=>{
+    wpCategory().then((categories)=>{
       store.dispatch(actions.getWpCategories(categories));
-    })*/
+    })
     //Array of category names, case sensitive
     wikiCategories(["Naggrísir", "Matur", "Búrið", "Heilsan"]).then((categories)=>{
       store.dispatch(actions.getWikiCategories(categories));

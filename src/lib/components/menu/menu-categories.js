@@ -8,9 +8,6 @@
 ** takes array of categories, each with a title and array of pages.
 */
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-//import ReactHtmlParser  from 'react-html-parser';
 import MenuList from './menu-list';
 
 class MenuCategories extends React.Component {

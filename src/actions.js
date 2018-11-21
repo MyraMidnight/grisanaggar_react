@@ -2,11 +2,11 @@ const actionTypes = {
 //	USER_LOGGED_IN: 'USER_LOGGED_IN',
     CHANGE_CURRENT_PAGE: 'CHANGE_CURRENT_PAGE',
     UPDATE_CURRENT_USER: 'UPDATE_CURRENT_USER',
-    UPDATE_NEWS: 'UPDATE_NEWS',
     GET_WIKI_PAGES: 'GET_WIKI_PAGES',
     GET_PAGES: 'GET_PAGES',
     GET_WIKI_CATEGORIES: 'GET_WIKI_CATEGORIES',
-    GET_WP_CATEGORIES: 'GET_WP_CATEGORIES'
+    GET_WP_CATEGORIES: 'GET_WP_CATEGORIES',
+    UPDATE_HEADER_IMAGE: 'UPDATE_HEADER_IMAGE',
 
 }
 //CHANGE_CURRENT_PAGE
@@ -16,10 +16,6 @@ export const changeCurrentPage = (page)=>{
 //UPDATE_CURRENT_USER
 export const updateCurrentUser = (user)=>{
     return {type: actionTypes.UPDATE_CURRENT_USER, payload:user}
-}
-//UPDATE_NEWS
-export const updateNews = (news)=>{
-    return {type: actionTypes.UPDATE_NEWS, payload:news}
 }
 //GET_PAGES
 export const getPages = (pages)=>{
@@ -36,4 +32,8 @@ export const getWikiCategories = (categories)=>{
 //GET_WP_CATEGORIES
 export const getWpCategories = (categories)=>{
     return {type: actionTypes.GET_WP_CATEGORIES, payload:categories}
+}
+//UPDATE_HEADER_IMAGE
+export const updateHeaderImage = (imageUrl)=>{
+    return {type: actionTypes.UPDATE_HEADER_IMAGE, payload:imageUrl}
 }

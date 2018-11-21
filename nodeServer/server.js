@@ -16,15 +16,23 @@ const localhost = "http://192.168.2.117/prototype-wp-wiki";
 ============================================================================*/
 app.get("/api/wiki/categories", (req,res)=>{
     //https://www.mediawiki.org/wiki/API:Categorymembers
-    const url = localhost + `/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:${req.headers.categorytitle}&prop=text&format=json`;
+    const url = localhost + `/wiki/api.php?action=query&list=categorymembers&cmtitle=Category:${req.headers.categorytitle}&format=json`;
     console.log("fetch wiki category url: ", url)
     fetch(url).then( results => results.json())
     .then( json => res.json(json))
     .catch(error => console.log("error fetching from: " + url + ", ", error))
 })
   //https://www.mediawiki.org/wiki/API:Parsing_wikitext
-  app.get("/api/wiki/page", (req,res)=>{
+app.get("/api/wiki/page", (req,res)=>{
     const url = localhost + `/wiki/api.php?action=parse&format=json&pageid=${req.headers.pageid}`;
+    console.log("fetch wiki page url: ", url)
+    fetch(url).then( results => results.json())
+    .then( json => res.json(json))
+    .catch(error => console.log("error fetching from: " + url + ", ", error))
+})
+//https://www.mediawiki.org/wiki/API:Allcategories
+app.get("/api/wiki/allcategories", (req,res)=>{
+    const url = localhost + `/wiki/api.php?action=query&format=json&list=allcategories`;
     console.log("fetch wiki page url: ", url)
     fetch(url).then( results => results.json())
     .then( json => res.json(json))
