@@ -107,75 +107,65 @@ const wikiCategory = (categorytitle)=>{
     //since category does not include page content,
     //we need to fetch the page content
     if(json.query.categorymembers.lenght !== 0){
-      //if the category has any pages, then process them
+      /* ========== IF CATEGORY HAS PAGES ========== */
       json.query.categorymembers.map((page)=>{
         const newPage = [];
         newPage["id"] = page.pageid;
         newPage["title"] = page.title;
         newPage["type"] = "wiki";
-        //Fetch the content
+        //Fetch the content of each page
         fetch(apiUrl + "/wiki/page", {headers:{pageid: page.pageid}
         }).then(res=>res.json()).then((wikipage)=>{
-          //create "content" and then
           newPage["content"] = wikipage.parse.text["*"]
-            //https://alligator.io/js/string-replace/
-            //remove [edit] links from content 
-            .replace(/<span class="mw-editsection".*]<\/span><\/span>/g,"")
-            //replace 'Contents' navigation title
-            .replace(/<h2>Contents<\/h2>/,"<h2>Page contents</h2>")
-            //then remove all classes from the remaining html elements
-            //.replace(/class=".*."/g, "") //it removes all links too... 
+          //https://alligator.io/js/string-replace/
+          //remove [edit] links from content 
+          .replace(/<span class="mw-editsection".*]<\/span><\/span>/g,"")
+          //replace 'Contents' navigation title
+          .replace(/<h2>Contents<\/h2>/,"<h2>Page contents</h2>")
+          //then remove all classes from the remaining html elements
+          //.replace(/class=".*."/g, "") //it removes all links too... 
         })
         //then create a 'newpage' object to return
         return newPagesList.push(newPage);
       })
-      return newPagesList
-    } else { 
-      //if category has no pages
-      return null
-    }
-    
-    //return new array of pages
+    }    
+    return newPagesList
   })
 }
 
 const wikiCategories = (categoriesList)=>{
+  //"categoriesList" is a array with names of categories
   const myPromise = new Promise((resolve, reject)=>{
-    fetch(apiUrl + "/wiki/allcategories").then(res=>res.json()).then((query)=>{
-          
-      //return only array of category names
+    //Start by fetching list of all wiki categories (names only)
+    fetch(apiUrl + "/wiki/allcategories").then(res=>res.json()).then((query)=>{          
+      //return only array of valid category names
       const newArray = []
       query.query.allcategories.forEach((item)=>{
         newArray.push(item["*"])
       })
       return newArray
     }).then((categories)=>{
-      //create new array for the categories
-      const groupCategories=[];
+      const groupCategories=[]
       //check if each category exists
       categoriesList.forEach((category)=>{
         if(categories.includes(category)===true){
           /* ========== IF CATEGORY EXISTS ========== */
-          //categories will be put into this object
-          console.log(category + " is an existing category")
-          //fetch the pages for this category
-          wikiCategory(category).then((catRes)=>{
-            console.log("results: ", catRes)
-            
+          //fetch each page for this category
+          wikiCategory(category).then((results)=>{            
             //create object for each category with pages
             const newCategory = {
               title: category,
-              pages: catRes
+              pages: results
             }
             groupCategories.push(newCategory);
           })
         } else {
-          /* ========== IF CATEGORY DOES NOT EXISTS ========== */
-          console.log(category + " is not an existing category")
+          console.log( '"'+ category + '" is not an existing wiki category ')
         }
       })
+      //resolve with the compiled category list
       resolve(groupCategories)
-    })
+    }).catch(error => console.log("Failed to fetch wiki categories"))
   })
   return myPromise
 }
@@ -186,8 +176,8 @@ const exp = {
     wikiCategories: wikiCategories, //fetch wiki pages under category
     //WordPress
     wpPages: fetchPages,
-    wpAuthenticate: wpAuthenticate, //authenticate wordpress user
-    wpToken: wpToken,
+    wpAuthenticate: wpAuthenticate, //authenticate wordpress user single time
+    wpToken: wpToken, // cookie token to varify login
     wpCategory: wpCategory
 }
 module.exports = exp;
