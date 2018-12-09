@@ -1,10 +1,18 @@
-
+//The node server to bypass the CORS when fetching mediaWiki API
+//located in "../nodeServer/server.js"
+//but since the wiki installation isn't included, and I had troubles bypassing the CORS
+//it will not get any results for review
 const apiUrl = "http://localhost:3001/api";
+//Fetches to the wiki are not done through the bypass API above
+//this is the live location of the wiki installation
+//it gets it's results from "http://grisanaggar.myramidnight.com/wp/wp-json/wp/v2/pages" 
 const wpUrl = "https://grisanaggar.myramidnight.com/wp";
-/* ============================================================================
- GENERAL  
-============================================================================*/
-
+//the live location of a wiki on my hosting I considered using for the demo,
+//with existing content. But there was still the issue of CORS 
+//existing categories there would include "Professions"
+//I considered using wikipedia at the last moment, but would have to rework the fetch categories 
+//after I realized it limited number of results, should have expected that
+//const wikiUrl = "https://pangaea.myramidnight.com/wiki"; 
 
 /* ============================================================================
  WORDPRESS 
@@ -152,7 +160,7 @@ const wikiCategories = (categoriesList)=>{
           /* ========== IF CATEGORY EXISTS ========== */
           //fetch each page for this category
           wikiCategory(category).then((results)=>{            
-            //create object for each category with pages
+            //create object for each category with title and array of pages
             const newCategory = {
               title: category,
               pages: results
