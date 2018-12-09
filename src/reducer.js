@@ -4,7 +4,7 @@ const defaultState = {
     pages:[], //wordpress pages
     wikiPages: [], //mediawiki articles
     currentPage:{//what page to display
-        page: 'wiki',
+        page: 'main',
 		data: {},
     }, 
 	newsItems: [], //wordpress posts
