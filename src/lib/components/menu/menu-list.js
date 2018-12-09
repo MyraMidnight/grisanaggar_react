@@ -13,6 +13,10 @@ class MenuList extends React.Component {
     }
     render(){
         //const pageLink = toString(this.props.location) + "?page=$" + toString(this.props.page.id);
+        /*if(!this.props.pages){
+            return <li>óvirkt</li>
+        }*/
+
         return( 
             <ul>
                 <h4>{this.props.title}</h4>
@@ -21,7 +25,7 @@ class MenuList extends React.Component {
                         //Each page li item
                         <li key={i}>
                             <NavLink 
-                                to={{ search: `?type=${page.type}?index=${i}}` }} 
+                                to={{ search: `?type=${page.type}?index=${i}` }} 
                                 activeClassName="active"
                                 onClick={()=>{this.changePage(page)}}>
                             {page.title}</NavLink>

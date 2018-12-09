@@ -1,5 +1,6 @@
 
 const apiUrl = "http://localhost:3001/api";
+const wpUrl = "https://grisanaggar.myramidnight.com/wp";
 /* ============================================================================
  GENERAL  
 ============================================================================*/
@@ -11,9 +12,8 @@ const apiUrl = "http://localhost:3001/api";
 // https://github.com/WP-API/Basic-Auth
 // http://wp-api.org/node-wpapi/
 
-const wpLocation = "http://192.168.2.117/prototype-wp-wiki/wordpress"
 const WPAPI = require('wpapi');
-const wp = new WPAPI({ endpoint: wpLocation + '/wp-json' })
+const wp = new WPAPI({ endpoint: wpUrl + '/wp-json' })
 
 /*===================== Fetch pages */
 const fetchPages = ()=>{
